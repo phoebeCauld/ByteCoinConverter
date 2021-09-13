@@ -54,6 +54,8 @@ class ConfigView: UIView {
     
     let picker: UIPickerView = {
         let picker = UIPickerView()
+        let color = UIColor.black
+        picker.setValue(color, forKey: "textColor")
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -87,26 +89,34 @@ class ConfigView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             
-            byteCoinImage.widthAnchor.constraint(equalToConstant: 80),
-            byteCoinImage.heightAnchor.constraint(equalToConstant: 80),
-            byteCoinImage.leadingAnchor.constraint(equalTo: convertView.leadingAnchor,
-                                                   constant: 10),
-            convertLabel.heightAnchor.constraint(equalToConstant: 30),
+            byteCoinImage.widthAnchor.constraint(equalToConstant: Constants.imageWidth),
+            byteCoinImage.heightAnchor.constraint(equalToConstant: Constants.imageHeight),
+            convertLabel.heightAnchor.constraint(equalToConstant: Constants.convertFieldHeight),
             convertLabel.widthAnchor.constraint(equalTo: convertView.widthAnchor,
-                                                multiplier: 0.5),
+                                                multiplier: Constants.convertFieldWidthMultiplier),
             currencyLabel.heightAnchor.constraint(equalToConstant: 30),
             convertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             convertView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
                                             constant: 30),
             convertView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                  constant: -10),
+                                                  constant: Constants.trailingConstant),
             convertView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                 constant: 10),
-            convertView.heightAnchor.constraint(equalToConstant: 100),
+                                                 constant: Constants.leadingConstant),
+            convertView.heightAnchor.constraint(equalToConstant: Constants.stackViewHeight),
             picker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             picker.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             picker.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             picker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+
+enum Constants {
+    static let trailingConstant: CGFloat = -10
+    static let leadingConstant: CGFloat = 10
+    static let imageWidth: CGFloat = 80
+    static let imageHeight: CGFloat = 80
+    static let stackViewHeight: CGFloat = 100
+    static let convertFieldWidthMultiplier: CGFloat = 0.5
+    static let convertFieldHeight: CGFloat = 100
 }
